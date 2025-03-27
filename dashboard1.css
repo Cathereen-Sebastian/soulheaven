@@ -1,0 +1,214 @@
+/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    background: linear-gradient(120deg, #a8e6cf, #ffd3b6, #ffaaa5);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: background 0.5s ease-in-out;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: linear-gradient(120deg, #1f1f1f, #2c3e50, #1a252f);
+    color: white;
+}
+
+/* Mood-based Backgrounds */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: background 0.8s ease-in-out;
+    animation: backgroundAnimation 10s infinite alternate;
+}
+
+/* Dynamic Background Gradient Animation */
+@keyframes backgroundAnimation {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(30deg); }
+}
+
+/* Mood-Specific Backgrounds */
+.happy-bg {
+    background: url('happy-bg.gif') no-repeat center center/cover;
+}
+
+.sad-bg {
+    background: url('sad-bg.gif') no-repeat center center/cover;
+}
+
+.stressed-bg {
+    background: url('stressed-bg.gif') no-repeat center center/cover;
+}
+
+.excited-bg {
+    background: url('excited-bg.gif') no-repeat center center/cover;
+}
+
+.tired-bg {
+    background: url('tired-bg.gif') no-repeat center center/cover;
+}
+
+/* Glassmorphism Container */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    animation: floating 3s infinite ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* Dark Mode Container */
+.dark-mode .container {
+    background: rgba(30, 39, 46, 0.6);
+    color: white;
+}
+
+/* Floating Animation */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Mood Selector */
+select, button {
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Select */
+select {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px solid #ff7675;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.dark-mode select {
+    background-color: rgba(30, 39, 46, 0.9);
+    border: 2px solid #6c5ce7;
+    color: white;
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #ff7675, #d63031);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 4px 10px rgba(214, 48, 49, 0.4);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #d63031, #ff7675);
+    transform: scale(1.05);
+}
+
+/* Refresh Button */
+.refresh {
+    background: linear-gradient(135deg, #6c5ce7, #4a3db6);
+}
+
+.refresh:hover {
+    background: linear-gradient(135deg, #4a3db6, #6c5ce7);
+}
+
+/* Toggle Dark Mode */
+.toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Toggle Text */
+.toggle-container p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    background: #ccc;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background: #4a3db6;
+}
+
+input:checked + .slider:before {
+    transform: translateX(25px);
+}
+
+/* Fade-in effect for the message */
+#message-box {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Dark Mode Message Box */
+.dark-mode #message-box {
+    color: #f1c40f;
+}
+
+/* Audio Player Styling (Hidden) */
+audio {
+    display: none;
+}

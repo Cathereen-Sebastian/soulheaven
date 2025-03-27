@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Wellness Tracker</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- Dark Mode Toggle -->
+    <div class="toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <p>Dark Mode</p>
+    </div>
+
+    <!-- Mood-based Background -->
+    <div class="background" id="background"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>🌿 Mental Wellness Tracker 🌿</h1>
+        <p>Select your current mood:</p>
+        
+        <select id="mood-select">
+            <option value="">-- Choose a Mood --</option>
+            <option value="Happy">😊 Happy</option>
+            <option value="Sad">😢 Sad</option>
+            <option value="Stressed">😖 Stressed</option>
+            <option value="Excited">🤩 Excited</option>
+            <option value="Tired">🥱 Tired</option>
+        </select>
+
+        <button onclick="generateMessage()">Get Motivation 💖</button>
+        <p id="message-box"></p>
+        
+        <button class="refresh" onclick="location.reload()">🔄 Refresh Mood</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="background-music" loop></audio>
+
+    <!-- JavaScript -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Heaven</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('bg.jpg') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+                         0 0 20px rgba(255, 255, 255, 0.7),
+                         0 0 40px rgba(255, 255, 255, 0.5);
+            animation: glow 1.5s infinite alternate, fadeIn 2s ease-in-out;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                             0 0 25px rgba(255, 255, 255, 0.6),
+                             0 0 35px rgba(255, 255, 255, 0.4);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                             0 0 30px rgba(255, 255, 255, 0.8),
+                             0 0 45px rgba(255, 255, 255, 0.6);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            font-family:cursive;
+            font-size: 2rem;
+            color: #f8e8e8;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInSlide 2s ease-out forwards;
+        }
+        h4{
+        
+            font-family:cursive;
+            font-size: 25px;
+            color: #f8e8e8;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInSlide 2s ease-out forwards;
+    
+        }
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .switch {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(255, 100, 150, 0.4);
+            transition: all 0.3s ease-in-out;
+            border: none;
+            outline: none;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+        .switch:hover {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            box-shadow: 0 12px 25px rgba(255, 100, 150, 0.6);
+            transform: scale(1.1);
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            color: #f8e8e8;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.6);
+            animation: fadeIn 3s ease-in-out;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Soul Heaven</h1>
+    <h4>Digital platfrom for emotional supprt</h4>
+    <h2>Your Safe Space for Healing & Growth</h2>
+    <button class="switch" onclick="startJourney()">Start Journey</button>
+    <footer>Error 404</footer>
+
+    <script>
+        function startJourney() {
+            alert("Starting your journey...");
+        }
+    </script>
+</body>
+</html>
