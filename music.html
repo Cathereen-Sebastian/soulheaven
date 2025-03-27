@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Therapy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>🎵 Find Peace in Music</h1>
+    <button onclick="playMusic('calm')">🧘 Calm Music</button>
+    <button onclick="playMusic('happy')">😊 Happy Music</button>
+
+    <script>
+        function playMusic(type) {
+            let url = type === "calm" ? "https://www.youtube.com/embed/2ZazYYFBUJM?autoplay=1" 
+                                      : "https://www.youtube.com/embed/d-diB65scQU?autoplay=1";
+            document.getElementById("musicPlayer").src = url;
+        }
+    </script>
+
+    <iframe id="musicPlayer" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>

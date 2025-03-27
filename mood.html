@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>How are you feeling today? 😊</h1>
+    <button onclick="saveMood('Happy')">😊 Happy</button>
+    <button onclick="saveMood('Calm')">😌 Calm</button>
+    <button onclick="saveMood('Lonely')">😞 Lonely</button>
+    <button onclick="saveMood('Stressed')">😣 Stressed</button>
+
+    <script>
+        function saveMood(mood) {
+            localStorage.setItem("mood", mood);
+            alert("Mood saved: " + mood);
+        }
+    </script>
+</body>
+</html>

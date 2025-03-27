@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Calm Chat</h2>
+        
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle">🌙</button>
+
+        <div class="chatbox" id="chatbox">
+            <div class="bot-message">Hello! I'm here to help. How are you feeling today? 😊</div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button onclick="sendMessage()">➤</button>
+            <button onclick="startListening()">🎤</button>
+        </div>
+        
+        <!-- Background Music Controls -->
+        <audio id="bg-music" loop>
+            <source src="calm-music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="music-toggle">🎵</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

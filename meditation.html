@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathing Exercise - MindfulMe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .breathing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+        }
+
+        .breathing-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 50px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .breathing-circle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71, #3498db);
+            z-index: -1;
+            animation: gradientRotate 4s linear infinite;
+        }
+
+        .breathing-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 260px;
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke: rgba(52, 152, 219, 0.3);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .instruction-text {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin: 2rem 0;
+            font-family: 'Playfair Display', serif;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .timer-text {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1rem;
+        }
+
+        .controls {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        @keyframes gradientRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes breatheIn {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 50px rgba(52, 152, 219, 0.3);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.3);
+                box-shadow: 0 0 100px rgba(52, 152, 219, 0.5);
+            }
+        }
+
+        @keyframes breatheOut {
+            from {
+                transform: translate(-50%, -50%) scale(1.3);
+                box-shadow: 0 0 100px rgba(52, 152, 219, 0.5);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 50px rgba(52, 152, 219, 0.3);
+            }
+        }
+
+        @keyframes hold {
+            from {
+                box-shadow: 0 0 100px rgba(52, 152, 219, 0.5);
+            }
+            to {
+                box-shadow: 0 0 100px rgba(52, 152, 219, 0.5);
+            }
+        }
+
+        .breathing-state-inhale .breathing-circle {
+            animation: breatheIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .breathing-state-hold .breathing-circle {
+            animation: hold 7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .breathing-state-exhale .breathing-circle {
+            animation: breatheOut 8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="breathing-container">
+            <div class="circle-container">
+                <svg class="progress-ring">
+                    <circle cx="130" cy="130" r="126"></circle>
+                </svg>
+                <div class="breathing-circle"></div>
+                <div class="particles"></div>
+            </div>
+            <div class="instruction-text">Get ready...</div>
+            <div class="timer-text"></div>
+            <div class="controls">
+                <button class="btn" id="startBtn">Start Breathing</button>
+                <button class="btn btn-reset" id="resetBtn">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const breathingCircle = document.querySelector('.breathing-circle');
+        const instructionText = document.querySelector('.instruction-text');
+        const timerText = document.querySelector('.timer-text');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressRing = document.querySelector('.progress-ring circle');
+        const particles = document.querySelector('.particles');
+
+        const radius = progressRing.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        progressRing.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressRing.style.strokeDashoffset = circumference;
+
+        let isBreathing = false;
+        let currentPhase = null;
+        let timeLeft = 0;
+        let breathingInterval;
+
+        function setProgress(percent) {
+            const offset = circumference - (percent / 100) * circumference;
+            progressRing.style.strokeDashoffset = offset;
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position around the circle
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 100;
+            const x = Math.cos(angle) * radius + 150;
+            const y = Math.sin(angle) * radius + 150;
+            
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width;
+            
+            particles.appendChild(particle);
+            
+            // Animate the particle
+            const animation = particle.animate([
+                {
+                    transform: `translate(0, 0) scale(1)`,
+                    opacity: 1
+                },
+                {
+                    transform: `translate(${(Math.random() - 0.5) * 100}px, ${(Math.random() - 0.5) * 100}px) scale(0)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 2000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                timerText.textContent = `${timeLeft} seconds`;
+                setProgress((timeLeft / getDuration()) * 100);
+            }
+        }
+
+        function getDuration() {
+            switch (currentPhase) {
+                case 'inhale': return 4;
+                case 'hold': return 7;
+                case 'exhale': return 8;
+                default: return 0;
+            }
+        }
+
+        function setBreathingState(state, duration) {
+            document.querySelector('.breathing-container').className = 
+                `breathing-container breathing-state-${state}`;
+            currentPhase = state;
+            timeLeft = duration;
+            
+            switch (state) {
+                case 'inhale':
+                    instructionText.textContent = 'Inhale...';
+                    // Create particles during inhale
+                    const particleInterval = setInterval(() => {
+                        if (currentPhase === 'inhale') createParticle();
+                    }, 100);
+                    setTimeout(() => clearInterval(particleInterval), duration * 1000);
+                    break;
+                case 'hold':
+                    instructionText.textContent = 'Hold...';
+                    break;
+                case 'exhale':
+                    instructionText.textContent = 'Exhale...';
+                    break;
+            }
+        }
+
+        function startBreathing() {
+            if (isBreathing) return;
+            isBreathing = true;
+            startBtn.textContent = 'Breathing...';
+            
+            function breathingCycle() {
+                setBreathingState('inhale', 4);
+                setTimeout(() => {
+                    if (!isBreathing) return;
+                    setBreathingState('hold', 7);
+                    setTimeout(() => {
+                        if (!isBreathing) return;
+                        setBreathingState('exhale', 8);
+                        setTimeout(() => {
+                            if (isBreathing) breathingCycle();
+                        }, 8000);
+                    }, 7000);
+                }, 4000);
+            }
+            
+            breathingCycle();
+            breathingInterval = setInterval(updateTimer, 1000);
+        }
+
+        function resetBreathing() {
+            isBreathing = false;
+            clearInterval(breathingInterval);
+            document.querySelector('.breathing-container').className = 'breathing-container';
+            startBtn.textContent = 'Start Breathing';
+            instructionText.textContent = 'Get ready...';
+            timerText.textContent = '';
+            setProgress(100);
+            particles.innerHTML = '';
+        }
+
+        startBtn.addEventListener('click', startBreathing);
+        resetBtn.addEventListener('click', resetBreathing);
+    </script>
+</body>
+</html>
